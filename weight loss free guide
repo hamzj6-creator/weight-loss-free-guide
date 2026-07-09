@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Reset — 6 Habits That Actually Move The Needle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&amp;family=Manrope:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EDF0E6;
+    --bg-soft: #F5F6F0;
+    --ink: #17302A;
+    --ink-soft: #3E5750;
+    --forest: #1B3A2F;
+    --gold: #C08A34;
+    --coral: #E2694F;
+    --line: rgba(23,48,42,0.14);
+    --card: #FFFFFF;
+    --display: 'Fraunces', serif;
+    --body: 'Manrope', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%;}
+
+  .wrap{max-width: 880px; margin: 0 auto; padding: 0 24px;}
+
+  /* ---- Header ---- */
+  header{padding: 28px 0 0;}
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ---- Hero ---- */
+  .hero{padding: 40px 0 56px; text-align:left;}
+  .hero h1{
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(34px, 6vw, 58px);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    color: var(--forest);
+    max-width: 15ch;
+  }
+  .hero h1 em{
+    font-style: italic;
+    font-weight: 500;
+    color: var(--coral);
+  }
+  .hero p.sub{
+    margin-top: 18px;
+    font-size: 18px;
+    max-width: 48ch;
+    color: var(--ink-soft);
+  }
+  .hero-meta{
+    margin-top: 28px;
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .hero-meta span{display:flex; align-items:center; gap:8px;}
+  .dot{width:6px; height:6px; border-radius:50%; background: var(--gold); display:inline-block;}
+
+  .hero-art{
+    margin-top: 36px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+
+  /* ---- Section shared ---- */
+  section{padding: 56px 0;}
+  .section-head{max-width: 60ch; margin-bottom: 34px;}
+  .section-head .kicker{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 10px;
+  }
+  .section-head h2{
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(26px, 4vw, 36px);
+    color: var(--forest);
+    line-height: 1.15;
+  }
+  .section-head p{
+    margin-top: 12px;
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+  hr.rule{
+    border:none; border-top: 1px solid var(--line);
+  }
+
+  /* ---- Ritual timeline (the 6 habits) ---- */
+  .ritual{
+    display:flex;
+    flex-direction:column;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .habit{
+    display:grid;
+    grid-template-columns: 90px 1fr;
+    gap: 20px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .habit .num{
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--gold);
+    padding-top: 4px;
+  }
+  .habit .time{
+    display:block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .habit h3{
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 21px;
+    color: var(--forest);
+    margin-bottom: 6px;
+  }
+  .habit p{color: var(--ink-soft); font-size: 15px; max-width: 62ch;}
+
+  /* ---- Bridge / product section ---- */
+  .bridge{
+    background: var(--forest);
+    color: #EFF3EA;
+    border-radius: 22px;
+    padding: 44px clamp(20px, 5vw, 52px);
+    margin: 8px 0;
+  }
+  .bridge .kicker{color: #A9C9BC;}
+  .bridge h2{
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(26px, 4vw, 34px);
+    line-height: 1.18;
+    max-width: 24ch;
+  }
+  .bridge p{
+    margin-top: 16px;
+    color: #CFE0D6;
+    max-width: 56ch;
+    font-size: 16px;
+  }
+  .bridge-grid{
+    margin-top: 30px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .bridge-card{
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 18px;
+  }
+  .bridge-card .n{font-family: var(--mono); font-size: 12px; color: var(--gold);}
+  .bridge-card p{margin-top:8px; font-size: 14px; color: #DCE8E1;}
+
+  .cta-row{
+    margin-top: 32px;
+    display:flex;
+    align-items:center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background: var(--coral);
+    color: #fff;
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 15px 26px;
+    border-radius: 999px;
+    text-decoration:none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 6px 18px rgba(226,105,79,0.28);
+  }
+  .btn:hover{transform: translateY(-2px); box-shadow: 0 10px 22px rgba(226,105,79,0.36);}
+  .btn-note{font-family: var(--mono); font-size: 12px; color: #A9C9BC;}
+
+  /* ---- FAQ ---- */
+  .faq-item{
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .faq-item h3{
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--forest);
+    margin-bottom: 8px;
+  }
+  .faq-item p{color: var(--ink-soft); font-size: 15px;}
+
+  /* ---- Footer ---- */
+  footer{
+    padding: 40px 0 60px;
+    border-top: 1px solid var(--line);
+    margin-top: 20px;
+  }
+  footer .disclosure{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    max-width: 70ch;
+  }
+  footer .brand{
+    margin-top: 18px;
+    font-family: var(--display);
+    font-size: 15px;
+    color: var(--forest);
+  }
+
+  @media (max-width: 640px){
+    .habit{grid-template-columns: 56px 1fr;}
+    .bridge-grid{grid-template-columns: 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">THE DAILY RESET — A GUIDE, NOT A GIMMICK</div>
+  </header>
+
+  <section class="hero">
+    <h1>Six honest habits, <em>done daily</em>, beat any quick fix.</h1>
+    <p class="sub">No crash diets, no "melt fat overnight" promises. Just the six things that actually change how your body looks and feels — laid out as a simple morning-to-night ritual you can start today.</p>
+    <div class="hero-meta">
+      <span><i class="dot"></i> 4 min read</span>
+      <span><i class="dot"></i> No sign-up required</span>
+      <span><i class="dot"></i> Backed by basic physiology, not hype</span>
+    </div>
+
+    <div class="hero-art">
+      <svg viewBox="0 0 880 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a daily ritual">
+        <rect width="880" height="260" fill="#F5F6F0"/>
+        <path d="M0 190 C 140 150, 260 220, 420 180 S 700 140, 880 190 L 880 260 L 0 260 Z" fill="#DDE6D8"/>
+        <path d="M0 210 C 160 180, 300 240, 460 200 S 720 170, 880 210 L 880 260 L 0 260 Z" fill="#C9D8C1"/>
+        <!-- sun -->
+        <circle cx="130" cy="80" r="34" fill="#C08A34" opacity="0.9"/>
+        <!-- glass with shake -->
+        <g transform="translate(400,60)">
+          <path d="M10 0 H70 L62 120 H18 Z" fill="none" stroke="#1B3A2F" stroke-width="3"/>
+          <path d="M17 55 L63 55 L58 112 L22 112 Z" fill="#C08A34" opacity="0.85"/>
+          <line x1="10" y1="0" x2="70" y2="0" stroke="#1B3A2F" stroke-width="3"/>
+        </g>
+        <!-- leaves -->
+        <g transform="translate(600,50)" fill="#1B3A2F" opacity="0.85">
+          <path d="M0 40 C 10 0, 50 0, 60 40 C 50 30, 10 30, 0 40 Z"/>
+        </g>
+        <g transform="translate(650,70)" fill="#E2694F" opacity="0.9">
+          <path d="M0 30 C 8 0, 38 0, 46 30 C 38 22, 8 22, 0 30 Z"/>
+        </g>
+        <!-- walking figure dots -->
+        <g fill="#17302A">
+          <circle cx="230" cy="150" r="5"/>
+          <circle cx="250" cy="160" r="5"/>
+          <circle cx="270" cy="150" r="5"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="habits">
+    <div class="section-head">
+      <div class="kicker">The Ritual</div>
+      <h2>Six checkpoints, spread across your day</h2>
+      <p>This is written as a sequence on purpose — each one sets up the next. Skip a couple, still fine. Do all six most days, and the compounding is where the real change comes from.</p>
+    </div>
+
+    <div class="ritual">
+      <div class="habit">
+        <div class="num">01<span class="time">On waking</span></div>
+        <div>
+          <h3>Rehydrate before you caffeinate</h3>
+          <p>A glass of water first thing kickstarts digestion and often clears up the "hunger" that's actually mild dehydration. Have your coffee after, not instead of.</p>
+        </div>
+      </div>
+
+      <div class="habit">
+        <div class="num">02<span class="time">Breakfast</span></div>
+        <div>
+          <h3>Lead every meal with protein and fibre</h3>
+          <p>Eggs, yoghurt, oats, lentils — whatever fits your kitchen. Protein and fibre are what actually keep you full for hours, which is what stops the 11am snack spiral.</p>
+        </div>
+      </div>
+
+      <div class="habit">
+        <div class="num">03<span class="time">Midday</span></div>
+        <div>
+          <h3>Move for 20–30 minutes, at any pace</h3>
+          <p>A brisk walk counts. You don't need a gym membership to start — you need consistent daily movement your body can actually recover from.</p>
+        </div>
+      </div>
+
+      <div class="habit">
+        <div class="num">04<span class="time">3–4x / week</span></div>
+        <div>
+          <h3>Add resistance training</h3>
+          <p>Bodyweight squats, resistance bands, or weights — muscle is what keeps your metabolism higher even at rest. This is the step most people skip and most regret skipping.</p>
+        </div>
+      </div>
+
+      <div class="habit">
+        <div class="num">05<span class="time">Evening</span></div>
+        <div>
+          <h3>Eat without a screen in front of you</h3>
+          <p>Distracted eating is the single easiest way to overeat without noticing. Ten device-free minutes per meal is enough to make a real difference.</p>
+        </div>
+      </div>
+
+      <div class="habit">
+        <div class="num">06<span class="time">Before bed</span></div>
+        <div>
+          <h3>Protect 7–9 hours of sleep</h3>
+          <p>Poor sleep raises the hormones that drive hunger and cravings the next day. If you fix nothing else on this list, fixing sleep alone moves the needle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="bridge">
+      <div class="kicker">WHERE A SUPPLEMENT CAN FIT IN</div>
+      <h2>Habits do the heavy lifting. A shake is a convenience, not a shortcut.</h2>
+      <p>If mornings are rushed and you know you won't hit your protein or micronutrient targets from food alone, a well-formulated shake mix can be an easy way to fill that gap — not a replacement for habits 01–06 above. That's exactly the kind of product the <strong>Lanta Flat Belly Shake</strong> is: a powder you mix into water each morning as part of the same routine.</p>
+
+      <div class="bridge-grid">
+        <div class="bridge-card">
+          <div class="n">CONVENIENCE</div>
+          <p>One scoop, one glass of water — fits into checkpoint 01 or 02 above with zero extra effort.</p>
+        </div>
+        <div class="bridge-card">
+          <div class="n">GUARANTEE</div>
+          <p>Comes with a 365-day money-back guarantee, so trying it carries very little downside.</p>
+        </div>
+        <div class="bridge-card">
+          <div class="n">REALISTIC EXPECTATIONS</div>
+          <p>Best viewed as support for the habits above — not a stand-in for them. No supplement replaces sleep, movement, or protein.</p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn" href="https://theflatbellyshake.com/discovery/#aff=bear46466281b" target="_blank" rel="noopener sponsored">
+          See today's offer →
+        </a>
+        <span class="btn-note">Opens the official Lanta Flat Belly Shake page</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="section-head">
+      <div class="kicker">Quick Questions</div>
+      <h2>Before you start</h2>
+    </div>
+
+    <div class="faq-item">
+      <h3>Do I need to do all six habits from day one?</h3>
+      <p>No. Pick two you're not doing today — usually water and sleep are the easiest wins — and build from there over a couple of weeks.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How fast should I expect to see results?</h3>
+      <p>Consistent basics like these typically show up as changes in energy and appetite within 1–2 weeks, with visible physical change taking longer and varying a lot by person.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is a shake or supplement required to follow this guide?</h3>
+      <p>Not at all. The six habits work on their own. The shake is mentioned because it's a genuinely convenient option for people who struggle to hit their morning nutrition — not because it's required.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="disclosure">
+      AFFILIATE DISCLOSURE — This page contains an affiliate link to the Lanta Flat Belly Shake. If you make a purchase through it, we may earn a commission at no extra cost to you. This page is for general informational purposes only and is not medical advice. Statements about supplements have not been evaluated by the FDA and are not intended to diagnose, treat, cure, or prevent any disease. Consult a doctor before starting any new diet or supplement, especially if pregnant, nursing, or managing a medical condition.
+    </div>
+    <div class="brand">The Daily Reset</div>
+  </footer>
+</div>
+
+</body>
+</html>
