@@ -5,16 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Daily Reset — 6 Habits That Actually Move The Needle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&amp;family=Manrope:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg: #EDF0E6;
     --bg-soft: #F5F6F0;
+    --cream: #FBF9F2;
     --ink: #17302A;
     --ink-soft: #3E5750;
     --forest: #1B3A2F;
+    --forest-deep: #0E211B;
     --gold: #C08A34;
+    --gold-light: #E3B665;
     --coral: #E2694F;
+    --coral-soft: #F2A88F;
     --line: rgba(23,48,42,0.14);
     --card: #FFFFFF;
     --display: 'Fraunces', serif;
@@ -22,94 +26,168 @@
     --mono: 'IBM Plex Mono', monospace;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
   body{
+    position:relative;
     background: var(--bg);
+    background-image:
+      radial-gradient(ellipse 900px 500px at 88% -6%, rgba(192,138,52,0.12), transparent 60%),
+      radial-gradient(ellipse 700px 500px at -8% 22%, rgba(226,105,79,0.09), transparent 55%),
+      radial-gradient(ellipse 600px 400px at 60% 78%, rgba(27,58,47,0.05), transparent 60%);
     color: var(--ink);
     font-family: var(--body);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:999;
+    opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
   }
   a{color:inherit;}
   img,svg{display:block; max-width:100%;}
 
-  .wrap{max-width: 880px; margin: 0 auto; padding: 0 24px;}
+  .wrap{max-width: 1060px; margin: 0 auto; padding: 0 24px;}
+
+  ::selection{background: var(--gold-light); color: var(--forest-deep);}
+
+  /* ---- Reveal-on-scroll ---- */
+  .reveal{opacity:0; transform: translateY(20px); transition: opacity 0.75s cubic-bezier(.2,.7,.2,1), transform 0.75s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1; transform: translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+  }
 
   /* ---- Header ---- */
-  header{padding: 28px 0 0;}
+  header{padding: 32px 0 0; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;}
   .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 11.5px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-soft);
   }
+  .eyebrow .mark{
+    width:18px; height:18px; border-radius:50%;
+    background: conic-gradient(from 200deg, var(--gold), var(--coral), var(--forest), var(--gold));
+    flex-shrink:0;
+    box-shadow: 0 0 0 3px rgba(192,138,52,0.12);
+  }
+  .header-tag{
+    font-family: var(--mono); font-size: 11px; letter-spacing:0.06em;
+    color: var(--ink-soft); opacity:0.7;
+  }
 
   /* ---- Hero ---- */
-  .hero{padding: 40px 0 56px; text-align:left;}
+  .hero{
+    padding: 50px 0 60px;
+    display:grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 40px;
+    align-items:center;
+  }
   .hero h1{
     font-family: var(--display);
     font-weight: 600;
-    font-size: clamp(34px, 6vw, 58px);
-    line-height: 1.06;
-    letter-spacing: -0.01em;
+    font-size: clamp(38px, 5.6vw, 62px);
+    line-height: 1.03;
+    letter-spacing: -0.015em;
     color: var(--forest);
-    max-width: 15ch;
+    max-width: 14ch;
   }
   .hero h1 em{
     font-style: italic;
     font-weight: 500;
-    color: var(--coral);
+    background: linear-gradient(100deg, var(--coral), var(--gold) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   .hero p.sub{
-    margin-top: 18px;
+    margin-top: 22px;
     font-size: 18px;
     max-width: 48ch;
     color: var(--ink-soft);
   }
   .hero-meta{
-    margin-top: 28px;
+    margin-top: 30px;
     display:flex;
-    gap:22px;
+    gap:10px;
     flex-wrap:wrap;
-    font-family: var(--mono);
-    font-size: 12.5px;
-    color: var(--ink-soft);
   }
-  .hero-meta span{display:flex; align-items:center; gap:8px;}
-  .dot{width:6px; height:6px; border-radius:50%; background: var(--gold); display:inline-block;}
+  .pill{
+    display:flex; align-items:center; gap:8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--line);
+    padding: 8px 14px;
+    border-radius: 999px;
+  }
+  .pill .dot{width:6px; height:6px; border-radius:50%; background: var(--gold); display:inline-block; flex-shrink:0;}
 
   .hero-art{
-    margin-top: 36px;
-    border-radius: 18px;
-    overflow: hidden;
+    width:100%;
+    background: linear-gradient(165deg, var(--cream), #F3EFE4);
     border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 22px 20px 16px;
+    box-shadow: 0 24px 48px -24px rgba(23,48,42,0.28), inset 0 1px 0 rgba(255,255,255,0.6);
+    transition: transform 0.4s ease;
+  }
+  .hero-art:hover{ transform: translateY(-4px) rotate(-0.25deg); }
+  .hero-art .cap{
+    margin-top: 4px;
+    display:flex;
+    justify-content:space-between;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.75;
   }
 
+  /* ---- Wave divider ---- */
+  .wave-divider{ margin: 4px 0; opacity:0.9; }
+  .wave-divider svg{ width:100%; height:auto; }
+
   /* ---- Section shared ---- */
-  section{padding: 56px 0;}
-  .section-head{max-width: 60ch; margin-bottom: 34px;}
+  section{padding: 64px 0;}
+  .section-head{max-width: 60ch; margin-bottom: 40px;}
   .section-head .kicker{
     font-family: var(--mono);
     font-size: 12px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--coral);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .section-head .kicker::before{
+    content:''; width:18px; height:1px; background: var(--coral); display:inline-block;
   }
   .section-head h2{
     font-family: var(--display);
     font-weight: 600;
-    font-size: clamp(26px, 4vw, 36px);
+    font-size: clamp(28px, 3.8vw, 40px);
     color: var(--forest);
-    line-height: 1.15;
+    line-height: 1.14;
   }
   .section-head p{
-    margin-top: 12px;
+    margin-top: 14px;
     color: var(--ink-soft);
-    font-size: 16px;
-  }
-  hr.rule{
-    border:none; border-top: 1px solid var(--line);
+    font-size: 16.5px;
   }
 
   /* ---- Ritual timeline (the 6 habits) ---- */
@@ -120,18 +198,43 @@
     border-top: 1px solid var(--line);
   }
   .habit{
+    position:relative;
     display:grid;
-    grid-template-columns: 90px 1fr;
-    gap: 20px;
-    padding: 26px 0;
+    grid-template-columns: 64px 110px 1fr;
+    gap: 22px;
+    padding: 30px 18px;
+    margin: 0 -18px;
     border-bottom: 1px solid var(--line);
     align-items: start;
+    border-radius: 16px;
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   }
+  .habit:hover{ background: var(--card); transform: translateX(3px); box-shadow: 0 14px 30px -18px rgba(23,48,42,0.28); }
+  .habit::before{
+    content:'';
+    position:absolute; left:0; top:16px; bottom:16px; width:3px;
+    border-radius: 3px;
+    background: linear-gradient(var(--gold), var(--coral));
+    opacity:0; transition: opacity 0.25s ease;
+  }
+  .habit:hover::before{ opacity:1; }
+  .habit .icon{
+    width:46px; height:46px;
+    border-radius: 13px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--forest);
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  }
+  .habit:hover .icon{ background: var(--forest); color: var(--cream); border-color: var(--forest); transform: scale(1.06) rotate(-3deg); }
+  .habit .icon svg{ width:23px; height:23px; }
   .habit .num{
     font-family: var(--mono);
     font-size: 13px;
     color: var(--gold);
-    padding-top: 4px;
+    padding-top: 5px;
+    font-weight: 500;
   }
   .habit .time{
     display:block;
@@ -143,51 +246,120 @@
   .habit h3{
     font-family: var(--display);
     font-weight: 600;
-    font-size: 21px;
+    font-size: 22px;
     color: var(--forest);
-    margin-bottom: 6px;
+    margin-bottom: 7px;
   }
-  .habit p{color: var(--ink-soft); font-size: 15px; max-width: 62ch;}
+  .habit p{color: var(--ink-soft); font-size: 15.5px; max-width: 60ch;}
+
+  /* ---- Pull quote ---- */
+  .pull-quote{
+    margin: 12px -18px 6px;
+    padding: 36px 18px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    display:grid;
+    grid-template-columns: 90px 1fr;
+    gap: 22px;
+    align-items:center;
+  }
+  .pull-quote .qmark{
+    font-family: var(--display);
+    font-size: 64px;
+    line-height: 1;
+    color: var(--coral-soft);
+    font-weight: 600;
+  }
+  .pull-quote p{
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(19px, 2.6vw, 25px);
+    color: var(--forest);
+    line-height: 1.35;
+    max-width: 46ch;
+  }
+  .pull-quote span{
+    display:block; margin-top:10px;
+    font-family: var(--mono); font-style:normal; font-size: 12px; color: var(--ink-soft); font-weight:400;
+  }
 
   /* ---- Bridge / product section ---- */
   .bridge{
-    background: var(--forest);
+    position:relative;
+    overflow:hidden;
+    background: linear-gradient(165deg, var(--forest) 0%, var(--forest-deep) 100%);
     color: #EFF3EA;
-    border-radius: 22px;
-    padding: 44px clamp(20px, 5vw, 52px);
+    border-radius: 28px;
+    padding: 52px clamp(22px, 5vw, 60px);
     margin: 8px 0;
+    box-shadow: 0 30px 60px -30px rgba(14,33,27,0.6);
   }
-  .bridge .kicker{color: #A9C9BC;}
+  .bridge::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image: radial-gradient(rgba(255,255,255,0.09) 1px, transparent 1px);
+    background-size: 18px 18px;
+    -webkit-mask-image: radial-gradient(ellipse 700px 400px at 85% 10%, black, transparent 70%);
+            mask-image: radial-gradient(ellipse 700px 400px at 85% 10%, black, transparent 70%);
+    pointer-events:none;
+  }
+  .bridge::after{
+    content:'';
+    position:absolute; right:-90px; bottom:-110px; width:340px; height:340px; border-radius:50%;
+    background: radial-gradient(circle, rgba(226,105,79,0.22), transparent 70%);
+    pointer-events:none;
+  }
+  .bridge-glow-top{
+    position:absolute; left:-60px; top:-90px; width:260px; height:260px; border-radius:50%;
+    background: radial-gradient(circle, rgba(227,182,101,0.16), transparent 70%);
+    pointer-events:none;
+  }
+  .bridge > *{ position:relative; z-index:1; }
+  .bridge .kicker{color: var(--gold-light); display:flex; align-items:center; gap:8px;}
+  .bridge .kicker::before{ content:''; width:18px; height:1px; background: var(--gold-light); display:inline-block; }
   .bridge h2{
     font-family: var(--display);
     font-weight: 600;
-    font-size: clamp(26px, 4vw, 34px);
-    line-height: 1.18;
-    max-width: 24ch;
+    font-size: clamp(28px, 3.8vw, 38px);
+    line-height: 1.16;
+    max-width: 22ch;
   }
-  .bridge p{
-    margin-top: 16px;
+  .bridge p.lead{
+    margin-top: 18px;
     color: #CFE0D6;
-    max-width: 56ch;
-    font-size: 16px;
+    max-width: 58ch;
+    font-size: 16.5px;
   }
   .bridge-grid{
-    margin-top: 30px;
+    margin-top: 34px;
     display:grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
   .bridge-card{
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 14px;
-    padding: 18px;
+    background: rgba(255,255,255,0.055);
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 16px;
+    padding: 22px;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
   }
-  .bridge-card .n{font-family: var(--mono); font-size: 12px; color: var(--gold);}
-  .bridge-card p{margin-top:8px; font-size: 14px; color: #DCE8E1;}
+  .bridge-card:hover{ background: rgba(255,255,255,0.09); border-color: rgba(227,182,101,0.4); transform: translateY(-4px); }
+  .bridge-card .icon{
+    width:36px; height:36px; border-radius:10px;
+    background: rgba(227,182,101,0.15);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--gold-light);
+    margin-bottom: 14px;
+    transition: transform 0.3s ease;
+  }
+  .bridge-card:hover .icon{ transform: scale(1.08); }
+  .bridge-card .icon svg{ width:18px; height:18px; }
+  .bridge-card .n{font-family: var(--mono); font-size: 11.5px; letter-spacing:0.06em; color: var(--gold-light);}
+  .bridge-card p{margin-top:9px; font-size: 14px; color: #DCE8E1;}
 
   .cta-row{
-    margin-top: 32px;
+    margin-top: 36px;
     display:flex;
     align-items:center;
     gap: 18px;
@@ -197,56 +369,87 @@
     display:inline-flex;
     align-items:center;
     gap:10px;
-    background: var(--coral);
+    background: linear-gradient(100deg, var(--coral), #d85c40 90%);
     color: #fff;
     font-family: var(--body);
     font-weight: 700;
     font-size: 15px;
-    padding: 15px 26px;
+    padding: 17px 30px;
     border-radius: 999px;
     text-decoration:none;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    box-shadow: 0 6px 18px rgba(226,105,79,0.28);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    box-shadow: 0 12px 26px rgba(226,105,79,0.34);
   }
-  .btn:hover{transform: translateY(-2px); box-shadow: 0 10px 22px rgba(226,105,79,0.36);}
+  .btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 30px rgba(226,105,79,0.42); filter: brightness(1.05); }
+  .btn:active{ transform: translateY(0); }
   .btn-note{font-family: var(--mono); font-size: 12px; color: #A9C9BC;}
 
-  /* ---- FAQ ---- */
-  .faq-item{
-    padding: 20px 0;
-    border-bottom: 1px solid var(--line);
+  .inline-link{
+    color:var(--coral); font-weight:700; text-decoration: underline; text-decoration-color: rgba(226,105,79,0.4); text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s ease, color 0.2s ease;
   }
-  .faq-item h3{
+  .inline-link:hover{ text-decoration-color: var(--coral); color:#c9553c; }
+
+  /* ---- FAQ (real accordion) ---- */
+  .faq-item{ border-bottom: 1px solid var(--line); }
+  .faq-item summary{
+    list-style:none;
+    cursor:pointer;
+    padding: 22px 0;
+    display:grid;
+    grid-template-columns: 1fr 30px;
+    align-items:center;
+    gap: 14px;
+  }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary h3{
     font-family: var(--display);
     font-weight: 600;
-    font-size: 18px;
+    font-size: 18.5px;
     color: var(--forest);
-    margin-bottom: 8px;
   }
-  .faq-item p{color: var(--ink-soft); font-size: 15px;}
+  .faq-item .plus{
+    font-family: var(--mono);
+    color: var(--gold);
+    font-size: 20px;
+    font-weight: 400;
+    transition: transform 0.3s ease;
+    justify-self:end;
+  }
+  .faq-item[open] .plus{ transform: rotate(45deg); }
+  .faq-item p{color: var(--ink-soft); font-size: 15.5px; padding: 0 0 24px; max-width: 62ch;}
 
   /* ---- Footer ---- */
   footer{
-    padding: 40px 0 60px;
+    padding: 46px 0 60px;
     border-top: 1px solid var(--line);
-    margin-top: 20px;
+    margin-top: 16px;
   }
   footer .disclosure{
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--ink-soft);
-    line-height: 1.7;
-    max-width: 70ch;
+    line-height: 1.75;
+    max-width: 72ch;
+    opacity: 0.85;
   }
   footer .brand{
-    margin-top: 18px;
+    margin-top: 22px;
+    display:flex; align-items:center; gap:10px;
     font-family: var(--display);
     font-size: 15px;
     color: var(--forest);
   }
+  footer .brand .mark{
+    width:16px; height:16px; border-radius:50%;
+    background: conic-gradient(from 200deg, var(--gold), var(--coral), var(--forest), var(--gold));
+  }
 
-  @media (max-width: 640px){
-    .habit{grid-template-columns: 56px 1fr;}
+  @media (max-width: 780px){
+    .hero{grid-template-columns: 1fr; gap:32px;}
+    .habit{grid-template-columns: 48px 1fr; row-gap:5px;}
+    .habit .num{ grid-column: 2; grid-row: 1; }
+    .pull-quote{grid-template-columns: 1fr; gap:8px;}
     .bridge-grid{grid-template-columns: 1fr;}
   }
 </style>
@@ -255,51 +458,106 @@
 
 <div class="wrap">
   <header>
-    <div class="eyebrow">THE DAILY RESET — A GUIDE, NOT A GIMMICK</div>
+    <div class="eyebrow"><span class="mark"></span>THE DAILY RESET — A GUIDE, NOT A GIMMICK</div>
+    <div class="header-tag">01 / 06 · Morning to night</div>
   </header>
 
   <section class="hero">
-    <h1>Six small habits, <em>stacked daily</em>, beat every crash diet.</h1>
-    <p class="sub">Forget "melt fat overnight." These are the six unglamorous things that quietly change how your body looks and feels — laid out as one simple morning-to-night ritual, plus one easy shortcut for the mornings you just can't keep up.</p>
-    <div class="hero-meta">
-      <span><i class="dot"></i> 4 min read</span>
-      <span><i class="dot"></i> No sign-up required</span>
-      <span><i class="dot"></i> Backed by basic physiology, not hype</span>
+    <div>
+      <h1>Six small habits, <em>stacked daily</em>, beat every crash diet.</h1>
+      <p class="sub">Forget "melt fat overnight." These are the six unglamorous things that quietly change how your body looks and feels — laid out as one simple morning-to-night ritual, plus one easy shortcut for the mornings you just can't keep up.</p>
+      <div class="hero-meta">
+        <span class="pill"><i class="dot"></i> 4 min read</span>
+        <span class="pill"><i class="dot"></i> No sign-up required</span>
+        <span class="pill"><i class="dot"></i> Backed by basic physiology</span>
+      </div>
     </div>
 
     <div class="hero-art">
-      <svg viewBox="0 0 880 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a daily ritual">
-        <rect width="880" height="260" fill="#F5F6F0"/>
-        <path d="M0 190 C 140 150, 260 220, 420 180 S 700 140, 880 190 L 880 260 L 0 260 Z" fill="#DDE6D8"/>
-        <path d="M0 210 C 160 180, 300 240, 460 200 S 720 170, 880 210 L 880 260 L 0 260 Z" fill="#C9D8C1"/>
-        <!-- sun -->
-        <circle cx="130" cy="80" r="34" fill="#C08A34" opacity="0.9"/>
-        <!-- glass with shake -->
-        <g transform="translate(400,60)">
-          <path d="M10 0 H70 L62 120 H18 Z" fill="none" stroke="#1B3A2F" stroke-width="3"/>
-          <path d="M17 55 L63 55 L58 112 L22 112 Z" fill="#C08A34" opacity="0.85"/>
-          <line x1="10" y1="0" x2="70" y2="0" stroke="#1B3A2F" stroke-width="3"/>
+      <svg viewBox="0 0 340 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An arc showing the six daily checkpoints from morning to night">
+        <defs>
+          <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#C08A34"/>
+            <stop offset="55%" stop-color="#E2694F"/>
+            <stop offset="100%" stop-color="#1B3A2F"/>
+          </linearGradient>
+          <radialGradient id="sunGrad" cx="50%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#FBE7B6"/>
+            <stop offset="100%" stop-color="#C08A34"/>
+          </radialGradient>
+          <radialGradient id="sunHalo" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#F7D896" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#F7D896" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- ground -->
+        <path d="M0 214 C 90 196, 250 196, 340 214 L 340 250 L 0 250 Z" fill="#DDE6D8"/>
+        <path d="M0 226 C 90 214, 250 214, 340 226 L 340 250 L 0 250 Z" fill="#C9D8C1"/>
+
+        <!-- day arc -->
+        <path d="M10 152 A170 170 0 0 1 330 152" fill="none" stroke="url(#arcGrad)" stroke-width="2.5" stroke-dasharray="1 7" stroke-linecap="round" opacity="0.55"/>
+
+        <!-- sun halo + marker riding the arc, near midday point -->
+        <circle cx="129" cy="45" r="34" fill="url(#sunHalo)"/>
+        <circle cx="129" cy="45" r="15" fill="url(#sunGrad)"/>
+
+        <!-- 01 waking -->
+        <g transform="translate(10,152)">
+          <circle r="6" fill="#C08A34"/>
+          <circle r="11" fill="none" stroke="#C08A34" stroke-width="1" opacity="0.35"/>
         </g>
-        <!-- leaves -->
-        <g transform="translate(600,50)" fill="#1B3A2F" opacity="0.85">
-          <path d="M0 40 C 10 0, 50 0, 60 40 C 50 30, 10 30, 0 40 Z"/>
+        <!-- 02 breakfast -->
+        <g transform="translate(56,84)">
+          <circle r="6" fill="#CE7A40"/>
         </g>
-        <g transform="translate(650,70)" fill="#E2694F" opacity="0.9">
-          <path d="M0 30 C 8 0, 38 0, 46 30 C 38 22, 8 22, 0 30 Z"/>
+        <!-- 03 midday (sun sits here) -->
+        <g transform="translate(129,45)">
+          <circle r="4" fill="#FBF9F2"/>
         </g>
-        <!-- walking figure dots -->
-        <g fill="#17302A">
-          <circle cx="230" cy="150" r="5"/>
-          <circle cx="250" cy="160" r="5"/>
-          <circle cx="270" cy="150" r="5"/>
+        <!-- 04 afternoon -->
+        <g transform="translate(211,45)">
+          <circle r="6" fill="#D9714B"/>
+        </g>
+        <!-- 05 evening -->
+        <g transform="translate(284,84)">
+          <circle r="6" fill="#B85C46"/>
+        </g>
+        <!-- 06 before bed -->
+        <g transform="translate(330,152)">
+          <circle r="6" fill="#1B3A2F"/>
+          <circle r="11" fill="none" stroke="#1B3A2F" stroke-width="1" opacity="0.35"/>
+        </g>
+
+        <!-- small leaf accent -->
+        <g transform="translate(285,190)" fill="#1B3A2F" opacity="0.8">
+          <path d="M0 22 C 5 0, 27 0, 32 22 C 27 16, 5 16, 0 22 Z"/>
+        </g>
+        <g transform="translate(300,206)" fill="#E2694F" opacity="0.85">
+          <path d="M0 16 C 4 0, 20 0, 24 16 C 20 11, 4 11, 0 16 Z"/>
+        </g>
+
+        <!-- numerals -->
+        <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#3E5750">
+          <text x="10" y="178" text-anchor="middle">01</text>
+          <text x="56" y="110" text-anchor="middle">02</text>
+          <text x="129" y="30" text-anchor="middle" fill="#17302A" font-weight="600">03</text>
+          <text x="211" y="30" text-anchor="middle" fill="#17302A" font-weight="600">04</text>
+          <text x="284" y="110" text-anchor="middle">05</text>
+          <text x="330" y="178" text-anchor="middle">06</text>
         </g>
       </svg>
+      <div class="cap"><span>Sunrise · Habit 01</span><span>Habit 06 · Lights out</span></div>
     </div>
   </section>
 
-  <hr class="rule">
+  <div class="wave-divider">
+    <svg viewBox="0 0 1060 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0 12 C 120 2, 220 22, 340 12 S 560 2, 680 12 S 900 22, 1060 12" fill="none" stroke="#1B3A2F" stroke-opacity="0.14" stroke-width="1.5"/>
+    </svg>
+  </div>
 
-  <section id="habits">
+  <section id="habits" class="reveal">
     <div class="section-head">
       <div class="kicker">The Ritual</div>
       <h2>Six checkpoints, spread across your day</h2>
@@ -308,6 +566,7 @@
 
     <div class="ritual">
       <div class="habit">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c3.2 4 6 7.6 6 11.2a6 6 0 1 1-12 0c0-3.6 2.8-7.2 6-11.2z"/></svg></div>
         <div class="num">01<span class="time">On waking</span></div>
         <div>
           <h3>Rehydrate before you caffeinate</h3>
@@ -316,14 +575,16 @@
       </div>
 
       <div class="habit">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 3 3v8"/><path d="M8 3v6"/><path d="M4 3v6"/><path d="M18 3c-1.7 0-3 2-3 5s1.3 5 3 5v8"/></svg></div>
         <div class="num">02<span class="time">Breakfast</span></div>
         <div>
           <h3>Lead every meal with protein and fibre</h3>
-          <p>Eggs, yoghurt, oats, lentils, or a <a href="https://theflatbellyshake.com/discovery/#aff=bear46466281b" target="_blank" rel="noopener sponsored" style="color:var(--coral); font-weight:600; text-decoration:underline;">quick shake mix</a> on rushed mornings — whatever fits your kitchen and your clock. Protein and fibre are what actually keep you full for hours, which is what stops the 11am snack spiral.</p>
+          <p>Eggs, yoghurt, oats, lentils, or a <a href="https://theflatbellyshake.com/discovery/#aff=bear46466281b" target="_blank" rel="noopener sponsored" class="inline-link">quick shake mix</a> on rushed mornings — whatever fits your kitchen and your clock. Protein and fibre are what actually keep you full for hours, which is what stops the 11am snack spiral.</p>
         </div>
       </div>
 
       <div class="habit">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.6" fill="currentColor" stroke="none"/><path d="M9 21l1.5-6L8 13l1-4.5 3-1 2.5 2 3 1"/><path d="M10.5 15l2.5 1.5L15 21"/></svg></div>
         <div class="num">03<span class="time">Midday</span></div>
         <div>
           <h3>Move for 20–30 minutes, at any pace</h3>
@@ -331,7 +592,16 @@
         </div>
       </div>
 
+      <div class="pull-quote">
+        <div class="qmark">"</div>
+        <div>
+          <p>Order matters less than the doing. Miss the sequence, keep the habit.</p>
+          <span>A NOTE ON HOW TO USE THIS LIST</span>
+        </div>
+      </div>
+
       <div class="habit">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M4 8v8"/><path d="M20 8v8"/><path d="M7.5 9.5v5"/><path d="M16.5 9.5v5"/></svg></div>
         <div class="num">04<span class="time">3–4x / week</span></div>
         <div>
           <h3>Add resistance training</h3>
@@ -340,6 +610,7 @@
       </div>
 
       <div class="habit">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="2.5"/><line x1="4" y1="21" x2="20" y2="3"/></svg></div>
         <div class="num">05<span class="time">Evening</span></div>
         <div>
           <h3>Eat without a screen in front of you</h3>
@@ -348,6 +619,7 @@
       </div>
 
       <div class="habit">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></div>
         <div class="num">06<span class="time">Before bed</span></div>
         <div>
           <h3>Protect 7–9 hours of sleep</h3>
@@ -357,22 +629,26 @@
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <div class="bridge">
+      <div class="bridge-glow-top"></div>
       <div class="kicker">WHERE A SUPPLEMENT CAN FIT IN</div>
       <h2>Habits do the heavy lifting. A shake just makes them easier to keep.</h2>
-      <p>Most people don't fall off this list because it's wrong — they fall off because rushed mornings make habit 02 hard to hit. That's the one gap a well-formulated shake mix can genuinely close. The <strong>Lanta Flat Belly Shake</strong> is built for exactly that: a powder you mix into water each morning so protein and micronutrients happen automatically, even on your busiest days — not a replacement for habits 01–06, but the thing that makes them stick.</p>
+      <p class="lead">Most people don't fall off this list because it's wrong — they fall off because rushed mornings make habit 02 hard to hit. That's the one gap a well-formulated shake mix can genuinely close. The <strong>Lanta Flat Belly Shake</strong> is built for exactly that: a powder you mix into water each morning so protein and micronutrients happen automatically, even on your busiest days — not a replacement for habits 01–06, but the thing that makes them stick.</p>
 
       <div class="bridge-grid">
         <div class="bridge-card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
           <div class="n">CONVENIENCE</div>
           <p>One scoop, one glass of water — fits into checkpoint 01 or 02 above with zero extra effort.</p>
         </div>
         <div class="bridge-card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l7 3v5.5c0 4.8-3 8.4-7 10-4-1.6-7-5.2-7-10V5.5z"/><path d="M9 12l2 2 4-4"/></svg></div>
           <div class="n">GUARANTEE</div>
           <p>Comes with a 365-day money-back guarantee, so trying it carries very little downside.</p>
         </div>
         <div class="bridge-card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.5-9C1 7.5 3 4 6.5 4c2 0 3.3 1.1 4 2.3C11.2 5.1 12.5 4 14.5 4 18 4 20.5 7.5 19 11c-1.9 4.4-7 9-7 9z"/></svg></div>
           <div class="n">REALISTIC EXPECTATIONS</div>
           <p>Best viewed as support for the habits above — not a stand-in for them. No supplement replaces sleep, movement, or protein.</p>
         </div>
@@ -387,33 +663,44 @@
     </div>
   </section>
 
-  <section id="faq">
+  <section id="faq" class="reveal">
     <div class="section-head">
       <div class="kicker">Quick Questions</div>
       <h2>Before you start</h2>
     </div>
 
-    <div class="faq-item">
-      <h3>Do I need to do all six habits from day one?</h3>
+    <details class="faq-item" open>
+      <summary><h3>Do I need to do all six habits from day one?</h3><span class="plus">+</span></summary>
       <p>No. Pick the two you're not doing today — usually water and sleep are the easiest wins — and layer in the rest over a couple of weeks.</p>
-    </div>
-    <div class="faq-item">
-      <h3>How fast should I expect to see results?</h3>
+    </details>
+    <details class="faq-item">
+      <summary><h3>How fast should I expect to see results?</h3><span class="plus">+</span></summary>
       <p>Consistent basics like these typically show up as better energy and steadier appetite within 1–2 weeks. Visible physical change takes longer and varies a lot from person to person.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Is a shake or supplement required to follow this guide?</h3>
+    </details>
+    <details class="faq-item">
+      <summary><h3>Is a shake or supplement required to follow this guide?</h3><span class="plus">+</span></summary>
       <p>Not at all. The six habits work on their own with zero purchases. The shake is mentioned only because it's a genuinely convenient way to cover habit 02 on mornings when cooking isn't happening — never a requirement.</p>
-    </div>
+    </details>
   </section>
 
   <footer>
     <div class="disclosure">
       AFFILIATE DISCLOSURE — This page contains an affiliate link to the Lanta Flat Belly Shake. If you make a purchase through it, we may earn a commission at no extra cost to you. This page is for general informational purposes only and is not medical advice. Statements about supplements have not been evaluated by the FDA and are not intended to diagnose, treat, cure, or prevent any disease. Consult a doctor before starting any new diet or supplement, especially if pregnant, nursing, or managing a medical condition.
     </div>
-    <div class="brand">The Daily Reset</div>
+    <div class="brand"><span class="mark"></span>The Daily Reset</div>
   </footer>
 </div>
+
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
 
 </body>
 </html>
