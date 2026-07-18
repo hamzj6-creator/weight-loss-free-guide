@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,18 +9,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #EDF0E6;
-    --bg-soft: #F5F6F0;
-    --cream: #FBF9F2;
-    --ink: #17302A;
-    --ink-soft: #3E5750;
-    --forest: #1B3A2F;
-    --forest-deep: #0E211B;
-    --gold: #C08A34;
-    --gold-light: #E3B665;
-    --coral: #E2694F;
-    --coral-soft: #F2A88F;
-    --line: rgba(23,48,42,0.14);
+    --bg: #FBF1EA;
+    --bg-soft: #FDF7F2;
+    --cream: #FFFBF4;
+    --ink: #3A2E2A;
+    --ink-soft: #7A6459;
+    --forest: #3E6B57;
+    --forest-deep: #26473A;
+    --gold: #D9A441;
+    --gold-light: #F0C878;
+    --coral: #EF7C63;
+    --coral-soft: #FBC4AE;
+    --blush: #FADCE4;
+    --line: rgba(58,46,42,0.12);
     --card: #FFFFFF;
     --display: 'Fraunces', serif;
     --body: 'Manrope', sans-serif;
@@ -31,9 +33,9 @@
     position:relative;
     background: var(--bg);
     background-image:
-      radial-gradient(ellipse 900px 500px at 88% -6%, rgba(192,138,52,0.12), transparent 60%),
-      radial-gradient(ellipse 700px 500px at -8% 22%, rgba(226,105,79,0.09), transparent 55%),
-      radial-gradient(ellipse 600px 400px at 60% 78%, rgba(27,58,47,0.05), transparent 60%);
+      radial-gradient(ellipse 900px 500px at 88% -6%, rgba(217,164,65,0.16), transparent 60%),
+      radial-gradient(ellipse 700px 500px at -8% 18%, rgba(250,220,228,0.55), transparent 55%),
+      radial-gradient(ellipse 600px 400px at 60% 78%, rgba(62,107,87,0.06), transparent 60%);
     color: var(--ink);
     font-family: var(--body);
     line-height: 1.6;
@@ -80,7 +82,7 @@
     width:18px; height:18px; border-radius:50%;
     background: conic-gradient(from 200deg, var(--gold), var(--coral), var(--forest), var(--gold));
     flex-shrink:0;
-    box-shadow: 0 0 0 3px rgba(192,138,52,0.12);
+    box-shadow: 0 0 0 4px rgba(217,164,65,0.16);
   }
   .header-tag{
     font-family: var(--mono); font-size: 11px; letter-spacing:0.06em;
@@ -118,6 +120,7 @@
     max-width: 48ch;
     color: var(--ink-soft);
   }
+  .sparkle{ display:inline-block; vertical-align: -2px; margin: 0 2px; }
   .hero-meta{
     margin-top: 30px;
     display:flex;
@@ -129,23 +132,25 @@
     font-family: var(--mono);
     font-size: 12px;
     color: var(--ink-soft);
-    background: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.7);
     border: 1px solid var(--line);
-    padding: 8px 14px;
+    padding: 9px 15px;
     border-radius: 999px;
+    transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
   }
-  .pill .dot{width:6px; height:6px; border-radius:50%; background: var(--gold); display:inline-block; flex-shrink:0;}
+  .pill:hover{ transform: translateY(-2px) scale(1.03); box-shadow: 0 8px 16px -8px rgba(58,46,42,0.25); }
+  .pill .dot{width:6px; height:6px; border-radius:50%; background: var(--coral); display:inline-block; flex-shrink:0;}
 
   .hero-art{
     width:100%;
-    background: linear-gradient(165deg, var(--cream), #F3EFE4);
+    background: linear-gradient(165deg, var(--cream), #FDEFE2);
     border: 1px solid var(--line);
-    border-radius: 22px;
+    border-radius: 32px;
     padding: 22px 20px 16px;
-    box-shadow: 0 24px 48px -24px rgba(23,48,42,0.28), inset 0 1px 0 rgba(255,255,255,0.6);
-    transition: transform 0.4s ease;
+    box-shadow: 0 24px 48px -24px rgba(58,46,42,0.24), inset 0 1px 0 rgba(255,255,255,0.7);
+    transition: transform 0.45s cubic-bezier(.34,1.56,.64,1);
   }
-  .hero-art:hover{ transform: translateY(-4px) rotate(-0.25deg); }
+  .hero-art:hover{ transform: translateY(-6px) rotate(-1deg) scale(1.015); }
   .hero-art .cap{
     margin-top: 4px;
     display:flex;
@@ -206,10 +211,10 @@
     margin: 0 -18px;
     border-bottom: 1px solid var(--line);
     align-items: start;
-    border-radius: 16px;
-    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    border-radius: 22px;
+    transition: background 0.25s ease, transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s ease;
   }
-  .habit:hover{ background: var(--card); transform: translateX(3px); box-shadow: 0 14px 30px -18px rgba(23,48,42,0.28); }
+  .habit:hover{ background: var(--card); transform: translateX(4px); box-shadow: 0 14px 30px -18px rgba(58,46,42,0.24); }
   .habit::before{
     content:'';
     position:absolute; left:0; top:16px; bottom:16px; width:3px;
@@ -220,14 +225,14 @@
   .habit:hover::before{ opacity:1; }
   .habit .icon{
     width:46px; height:46px;
-    border-radius: 13px;
-    background: var(--cream);
+    border-radius: 50%;
+    background: var(--blush);
     border: 1px solid var(--line);
     display:flex; align-items:center; justify-content:center;
     color: var(--forest);
-    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.35s cubic-bezier(.34,1.56,.64,1);
   }
-  .habit:hover .icon{ background: var(--forest); color: var(--cream); border-color: var(--forest); transform: scale(1.06) rotate(-3deg); }
+  .habit:hover .icon{ background: var(--forest); color: var(--cream); border-color: var(--forest); transform: scale(1.12) rotate(-6deg); }
   .habit .icon svg{ width:23px; height:23px; }
   .habit .num{
     font-family: var(--mono);
@@ -267,7 +272,7 @@
     font-family: var(--display);
     font-size: 64px;
     line-height: 1;
-    color: var(--coral-soft);
+    color: var(--coral);
     font-weight: 600;
   }
   .pull-quote p{
@@ -290,10 +295,10 @@
     overflow:hidden;
     background: linear-gradient(165deg, var(--forest) 0%, var(--forest-deep) 100%);
     color: #EFF3EA;
-    border-radius: 28px;
+    border-radius: 36px;
     padding: 52px clamp(22px, 5vw, 60px);
     margin: 8px 0;
-    box-shadow: 0 30px 60px -30px rgba(14,33,27,0.6);
+    box-shadow: 0 30px 60px -30px rgba(38,71,58,0.55);
   }
   .bridge::before{
     content:'';
@@ -340,20 +345,20 @@
   .bridge-card{
     background: rgba(255,255,255,0.055);
     border: 1px solid rgba(255,255,255,0.13);
-    border-radius: 16px;
+    border-radius: 22px;
     padding: 22px;
-    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.3s cubic-bezier(.34,1.56,.64,1);
   }
-  .bridge-card:hover{ background: rgba(255,255,255,0.09); border-color: rgba(227,182,101,0.4); transform: translateY(-4px); }
+  .bridge-card:hover{ background: rgba(255,255,255,0.09); border-color: rgba(240,200,120,0.4); transform: translateY(-5px) scale(1.015); }
   .bridge-card .icon{
-    width:36px; height:36px; border-radius:10px;
-    background: rgba(227,182,101,0.15);
+    width:36px; height:36px; border-radius:50%;
+    background: rgba(240,200,120,0.18);
     display:flex; align-items:center; justify-content:center;
     color: var(--gold-light);
     margin-bottom: 14px;
-    transition: transform 0.3s ease;
+    transition: transform 0.35s cubic-bezier(.34,1.56,.64,1);
   }
-  .bridge-card:hover .icon{ transform: scale(1.08); }
+  .bridge-card:hover .icon{ transform: scale(1.15) rotate(6deg); }
   .bridge-card .icon svg{ width:18px; height:18px; }
   .bridge-card .n{font-family: var(--mono); font-size: 11.5px; letter-spacing:0.06em; color: var(--gold-light);}
   .bridge-card p{margin-top:9px; font-size: 14px; color: #DCE8E1;}
@@ -369,7 +374,7 @@
     display:inline-flex;
     align-items:center;
     gap:10px;
-    background: linear-gradient(100deg, var(--coral), #d85c40 90%);
+    background: linear-gradient(100deg, var(--coral), #e2704f 90%);
     color: #fff;
     font-family: var(--body);
     font-weight: 700;
@@ -377,11 +382,11 @@
     padding: 17px 30px;
     border-radius: 999px;
     text-decoration:none;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
-    box-shadow: 0 12px 26px rgba(226,105,79,0.34);
+    transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease, filter 0.15s ease;
+    box-shadow: 0 12px 26px rgba(239,124,99,0.36);
   }
-  .btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 30px rgba(226,105,79,0.42); filter: brightness(1.05); }
-  .btn:active{ transform: translateY(0); }
+  .btn:hover{ transform: translateY(-3px) scale(1.03); box-shadow: 0 16px 30px rgba(239,124,99,0.44); filter: brightness(1.05); }
+  .btn:active{ transform: translateY(0) scale(0.98); }
   .btn-note{font-family: var(--mono); font-size: 12px; color: #A9C9BC;}
 
   .inline-link{
@@ -410,13 +415,18 @@
   }
   .faq-item .plus{
     font-family: var(--mono);
-    color: var(--gold);
-    font-size: 20px;
-    font-weight: 400;
-    transition: transform 0.3s ease;
+    color: var(--forest);
+    font-size: 17px;
+    font-weight: 500;
+    transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), background 0.25s ease, color 0.25s ease;
     justify-self:end;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--blush);
+    display:flex; align-items:center; justify-content:center;
   }
-  .faq-item[open] .plus{ transform: rotate(45deg); }
+  .faq-item summary:hover .plus{ background: var(--coral-soft); }
+  .faq-item[open] .plus{ transform: rotate(45deg); background: var(--coral); color:#fff; }
   .faq-item p{color: var(--ink-soft); font-size: 15.5px; padding: 0 0 24px; max-width: 62ch;}
 
   /* ---- Footer ---- */
@@ -464,7 +474,7 @@
 
   <section class="hero">
     <div>
-      <h1>Six small habits, <em>stacked daily</em>, beat every crash diet.</h1>
+      <h1>Six small habits, <em>stacked daily</em>, beat every crash diet. <svg class="sparkle" width="26" height="26" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z"/></svg></h1>
       <p class="sub">Forget "melt fat overnight." These are the six unglamorous things that quietly change how your body looks and feels — laid out as one simple morning-to-night ritual, plus one easy shortcut for the mornings you just can't keep up.</p>
       <div class="hero-meta">
         <span class="pill"><i class="dot"></i> 4 min read</span>
@@ -477,13 +487,13 @@
       <svg viewBox="0 0 340 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An arc showing the six daily checkpoints from morning to night">
         <defs>
           <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#C08A34"/>
-            <stop offset="55%" stop-color="#E2694F"/>
-            <stop offset="100%" stop-color="#1B3A2F"/>
+            <stop offset="0%" stop-color="#D9A441"/>
+            <stop offset="55%" stop-color="#EF7C63"/>
+            <stop offset="100%" stop-color="#3E6B57"/>
           </linearGradient>
           <radialGradient id="sunGrad" cx="50%" cy="35%" r="65%">
             <stop offset="0%" stop-color="#FBE7B6"/>
-            <stop offset="100%" stop-color="#C08A34"/>
+            <stop offset="100%" stop-color="#D9A441"/>
           </radialGradient>
           <radialGradient id="sunHalo" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stop-color="#F7D896" stop-opacity="0.55"/>
@@ -492,8 +502,8 @@
         </defs>
 
         <!-- ground -->
-        <path d="M0 214 C 90 196, 250 196, 340 214 L 340 250 L 0 250 Z" fill="#DDE6D8"/>
-        <path d="M0 226 C 90 214, 250 214, 340 226 L 340 250 L 0 250 Z" fill="#C9D8C1"/>
+        <path d="M0 214 C 90 196, 250 196, 340 214 L 340 250 L 0 250 Z" fill="#F6DCC8"/>
+        <path d="M0 226 C 90 214, 250 214, 340 226 L 340 250 L 0 250 Z" fill="#F0C6A8"/>
 
         <!-- day arc -->
         <path d="M10 152 A170 170 0 0 1 330 152" fill="none" stroke="url(#arcGrad)" stroke-width="2.5" stroke-dasharray="1 7" stroke-linecap="round" opacity="0.55"/>
@@ -501,11 +511,16 @@
         <!-- sun halo + marker riding the arc, near midday point -->
         <circle cx="129" cy="45" r="34" fill="url(#sunHalo)"/>
         <circle cx="129" cy="45" r="15" fill="url(#sunGrad)"/>
+        <g stroke="#8a5a1f" stroke-width="1.4" stroke-linecap="round" fill="none">
+          <circle cx="124.5" cy="42" r="1.1" fill="#8a5a1f" stroke="none"/>
+          <circle cx="133.5" cy="42" r="1.1" fill="#8a5a1f" stroke="none"/>
+          <path d="M124 48.5 Q129 52.5 134 48.5"/>
+        </g>
 
         <!-- 01 waking -->
         <g transform="translate(10,152)">
-          <circle r="6" fill="#C08A34"/>
-          <circle r="11" fill="none" stroke="#C08A34" stroke-width="1" opacity="0.35"/>
+          <circle r="6" fill="#D9A441"/>
+          <circle r="11" fill="none" stroke="#D9A441" stroke-width="1" opacity="0.35"/>
         </g>
         <!-- 02 breakfast -->
         <g transform="translate(56,84)">
@@ -525,24 +540,24 @@
         </g>
         <!-- 06 before bed -->
         <g transform="translate(330,152)">
-          <circle r="6" fill="#1B3A2F"/>
-          <circle r="11" fill="none" stroke="#1B3A2F" stroke-width="1" opacity="0.35"/>
+          <circle r="6" fill="#3E6B57"/>
+          <circle r="11" fill="none" stroke="#3E6B57" stroke-width="1" opacity="0.35"/>
         </g>
 
         <!-- small leaf accent -->
-        <g transform="translate(285,190)" fill="#1B3A2F" opacity="0.8">
+        <g transform="translate(285,190)" fill="#3E6B57" opacity="0.8">
           <path d="M0 22 C 5 0, 27 0, 32 22 C 27 16, 5 16, 0 22 Z"/>
         </g>
-        <g transform="translate(300,206)" fill="#E2694F" opacity="0.85">
+        <g transform="translate(300,206)" fill="#EF7C63" opacity="0.85">
           <path d="M0 16 C 4 0, 20 0, 24 16 C 20 11, 4 11, 0 16 Z"/>
         </g>
 
         <!-- numerals -->
-        <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#3E5750">
+        <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#7A6459">
           <text x="10" y="178" text-anchor="middle">01</text>
           <text x="56" y="110" text-anchor="middle">02</text>
-          <text x="129" y="30" text-anchor="middle" fill="#17302A" font-weight="600">03</text>
-          <text x="211" y="30" text-anchor="middle" fill="#17302A" font-weight="600">04</text>
+          <text x="129" y="30" text-anchor="middle" fill="#3A2E2A" font-weight="600">03</text>
+          <text x="211" y="30" text-anchor="middle" fill="#3A2E2A" font-weight="600">04</text>
           <text x="284" y="110" text-anchor="middle">05</text>
           <text x="330" y="178" text-anchor="middle">06</text>
         </g>
@@ -553,7 +568,7 @@
 
   <div class="wave-divider">
     <svg viewBox="0 0 1060 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0 12 C 120 2, 220 22, 340 12 S 560 2, 680 12 S 900 22, 1060 12" fill="none" stroke="#1B3A2F" stroke-opacity="0.14" stroke-width="1.5"/>
+      <path d="M0 12 C 120 2, 220 22, 340 12 S 560 2, 680 12 S 900 22, 1060 12" fill="none" stroke="#3E6B57" stroke-opacity="0.14" stroke-width="1.5"/>
     </svg>
   </div>
 
@@ -561,7 +576,7 @@
     <div class="section-head">
       <div class="kicker">The Ritual</div>
       <h2>Six checkpoints, spread across your day</h2>
-      <p>This is written as a sequence on purpose — each checkpoint sets up the next one. Missing a couple is fine. Hit all six most days and the compounding is where the real, lasting change comes from.</p>
+      <p>This is written as a sequence on purpose — each checkpoint sets up the next one. Missing a couple is fine. Hit all six most days and the compounding is where the real, lasting change comes from. Prefer not to plan it yourself? A guided program like <a href="https://weightlosssoft.com/ds.html#aff=bear46466281b" target="_blank" rel="noopener sponsored" class="inline-link">Weight Loss 2.0</a> turns this exact sequence into a personalized daily plan and tracks it for you.</p>
     </div>
 
     <div class="ritual">
@@ -579,7 +594,7 @@
         <div class="num">02<span class="time">Breakfast</span></div>
         <div>
           <h3>Lead every meal with protein and fibre</h3>
-          <p>Eggs, yoghurt, oats, lentils, or a <a href="https://theflatbellyshake.com/discovery/#aff=bear46466281b" target="_blank" rel="noopener sponsored" class="inline-link">quick shake mix</a> on rushed mornings — whatever fits your kitchen and your clock. Protein and fibre are what actually keep you full for hours, which is what stops the 11am snack spiral.</p>
+          <p>Eggs, yoghurt, oats, lentils — whatever fits your kitchen. Protein and fibre are what actually keep you full for hours, which is what stops the 11am snack spiral.</p>
         </div>
       </div>
 
@@ -632,33 +647,33 @@
   <section class="reveal">
     <div class="bridge">
       <div class="bridge-glow-top"></div>
-      <div class="kicker">WHERE A SUPPLEMENT CAN FIT IN</div>
-      <h2>Habits do the heavy lifting. A shake just makes them easier to keep.</h2>
-      <p class="lead">Most people don't fall off this list because it's wrong — they fall off because rushed mornings make habit 02 hard to hit. That's the one gap a well-formulated shake mix can genuinely close. The <strong>Lanta Flat Belly Shake</strong> is built for exactly that: a powder you mix into water each morning so protein and micronutrients happen automatically, even on your busiest days — not a replacement for habits 01–06, but the thing that makes them stick.</p>
+      <div class="kicker">WHERE A GUIDED PROGRAM CAN FIT IN</div>
+      <h2>Habits do the heavy lifting. A guided plan just makes them easier to follow.</h2>
+      <p class="lead">Most people don't fall off this list because it's wrong — they fall off because nobody's tracking it and the plan never adapts to them. That's the gap a program like <strong>Weight Loss 2.0</strong> is built to close: software that turns habits 01–06 into a personalized daily plan — tailored routines, meal guidance, intermittent fasting timing, sleep tips, and progress tracking that adjusts as you go. It's not a replacement for the habits above; it's a way to have them planned and tracked for you instead of doing it in your head.</p>
 
       <div class="bridge-grid">
         <div class="bridge-card">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
-          <div class="n">CONVENIENCE</div>
-          <p>One scoop, one glass of water — fits into checkpoint 01 or 02 above with zero extra effort.</p>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg></div>
+          <div class="n">PERSONALIZED PLAN</div>
+          <p>Built around your goals and current habits, then adjusted over time — works on any device, no gym required.</p>
         </div>
         <div class="bridge-card">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l7 3v5.5c0 4.8-3 8.4-7 10-4-1.6-7-5.2-7-10V5.5z"/><path d="M9 12l2 2 4-4"/></svg></div>
           <div class="n">GUARANTEE</div>
-          <p>Comes with a 365-day money-back guarantee, so trying it carries very little downside.</p>
+          <p>One-time payment, no subscriptions, backed by a 60-day money-back guarantee — so trying it carries very little downside.</p>
         </div>
         <div class="bridge-card">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.5-9C1 7.5 3 4 6.5 4c2 0 3.3 1.1 4 2.3C11.2 5.1 12.5 4 14.5 4 18 4 20.5 7.5 19 11c-1.9 4.4-7 9-7 9z"/></svg></div>
           <div class="n">REALISTIC EXPECTATIONS</div>
-          <p>Best viewed as support for the habits above — not a stand-in for them. No supplement replaces sleep, movement, or protein.</p>
+          <p>Best viewed as structure and accountability for the habits above — not magic. Individual results vary, and consistency still does the work.</p>
         </div>
       </div>
 
       <div class="cta-row">
-        <a class="btn" href="https://theflatbellyshake.com/discovery/#aff=bear46466281b" target="_blank" rel="noopener sponsored">
-          See the Lanta Flat Belly Shake →
+        <a class="btn" href="https://weightlosssoft.com/ds.html#aff=bear46466281b" target="_blank" rel="noopener sponsored">
+          See Weight Loss 2.0 →
         </a>
-        <span class="btn-note">Opens the official Lanta Flat Belly Shake page · 365-day guarantee</span>
+        <span class="btn-note">Opens the official Weight Loss 2.0 page · 60-day guarantee</span>
       </div>
     </div>
   </section>
@@ -678,14 +693,14 @@
       <p>Consistent basics like these typically show up as better energy and steadier appetite within 1–2 weeks. Visible physical change takes longer and varies a lot from person to person.</p>
     </details>
     <details class="faq-item">
-      <summary><h3>Is a shake or supplement required to follow this guide?</h3><span class="plus">+</span></summary>
-      <p>Not at all. The six habits work on their own with zero purchases. The shake is mentioned only because it's a genuinely convenient way to cover habit 02 on mornings when cooking isn't happening — never a requirement.</p>
+      <summary><h3>Do I need Weight Loss 2.0 to follow this guide?</h3><span class="plus">+</span></summary>
+      <p>Not at all. The six habits work on their own with zero purchases. The program is mentioned only because it turns this same six-step approach into a tracked, personalized plan for people who'd rather not build it themselves — never a requirement.</p>
     </details>
   </section>
 
   <footer>
     <div class="disclosure">
-      AFFILIATE DISCLOSURE — This page contains an affiliate link to the Lanta Flat Belly Shake. If you make a purchase through it, we may earn a commission at no extra cost to you. This page is for general informational purposes only and is not medical advice. Statements about supplements have not been evaluated by the FDA and are not intended to diagnose, treat, cure, or prevent any disease. Consult a doctor before starting any new diet or supplement, especially if pregnant, nursing, or managing a medical condition.
+      AFFILIATE DISCLOSURE — This page contains an affiliate link to Weight Loss 2.0. If you make a purchase through it, we may earn a commission at no extra cost to you. This page is for general informational purposes only and is not medical advice. Statements about this product have not been evaluated by the FDA and are not intended to diagnose, treat, cure, or prevent any disease. Individual results vary. Consult a doctor before starting any new diet, exercise, or weight-loss program, especially if pregnant, nursing, or managing a medical condition.
     </div>
     <div class="brand"><span class="mark"></span>The Daily Reset</div>
   </footer>
